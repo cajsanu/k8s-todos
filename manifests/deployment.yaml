@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-todos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todos
+  template:
+    metadata:
+      labels:
+        app: todos
+    spec:
+      containers:
+        - name: k8s-todos
+          image: todos
+          resources: 
+            limits:
+              memory: 50Mi
+              # cpu: should not be here

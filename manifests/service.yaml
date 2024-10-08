@@ -3,12 +3,10 @@ kind: Service
 metadata:
   name: k8s-todos
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: todos
   ports:
-    - name: http
-      nodePort: 30080 # Value for nodePort can be between 30000-32767
-      protocol: TCP
-      port: 1234
+    - protocol: TCP
+      port: 2345
       targetPort: 3000

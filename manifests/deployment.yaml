@@ -12,9 +12,16 @@ spec:
       labels:
         app: todos
     spec:
+      volumes:
+        - name: duck-image-file
+          persistentVolumeClaim:
+            claimName: duck-image-claim
       containers:
         - name: k8s-todos
-          image: todos:002
+          image: todos:003
+          volumeMounts:
+            - name: duck-image-file
+              mountPath: /tmp/files
           resources: 
             limits:
               memory: 50Mi

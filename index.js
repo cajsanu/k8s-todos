@@ -12,17 +12,30 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   await findAFile();
-  fs.readFile(filePath, "utf8", (err, imgaeUrl) => {
+  fs.readFile(filePath, "utf8", (err, imageUrl) => {
     if (err) {
       console.error("Error reading file:", err);
       return res.status(500).send("Could not get image from file.");
     }
 
+    const todos = [
+      { id: 1, text: "Clean house" },
+      { id: 2, text: "Learn to code" },
+    ];
+
     res.send(`
         <html>
           <body>
             <h1>Hello world</h1>
-            <img src="${imgaeUrl}" alt="Random image of duck" />
+            <img src="${imageUrl}" alt="Random image of duck" />
+            <form action="/submit" method="POST">
+              <label for="inputField">Enter some text:</label>
+              <input type="text" id="inputField" name="userInput" required>
+              <button type="submit">Submit</button>
+            </form>
+            <ol>
+            ${todos.map((t) => `<li>${t.text}</li>`)}
+            </ol>
           </body>
         </html>
       `);

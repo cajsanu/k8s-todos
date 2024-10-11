@@ -76,9 +76,7 @@ const setImageEveryHour = async () => {
 
 setInterval(async () => {
   setImageEveryHour();
-}, 3600000);
-
-// use the interval to get a new image every hour and then cache it in a volume?
+}, 360000);
 
 const start = async () => {
   app.listen(PORT, () => {
